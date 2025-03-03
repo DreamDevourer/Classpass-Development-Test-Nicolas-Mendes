@@ -47,17 +47,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Logos carousel
 document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.getElementById("carousel");
-  log("Logos Carousel started");
+  const carouselTop = document.getElementById("carousel-logos");
+  const carouselGroup = document.querySelector(".carousel--logos-group");
 
-  carousel.innerHTML += carousel.innerHTML;
+  // Duplicate inner content initially so that there are three groups.
+  carouselGroup.innerHTML += carouselGroup.innerHTML + carouselGroup.innerHTML;
 
-  let scrollLeft = 0;
-  const scrollSpeed = 3;
+  let offset = 100; // starting translateX value (in px)
+  const scrollSpeed = 2;
   let lastTimestamp = null;
-
-  const resetDistance = carousel.offsetWidth;
 
   function animateCarousel(timestamp) {
     if (!lastTimestamp) {
@@ -66,11 +66,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const deltaTime = timestamp - lastTimestamp;
     lastTimestamp = timestamp;
 
-    scrollLeft += (scrollSpeed * deltaTime) / 60; //60fps
-    if (scrollLeft >= resetDistance) {
-      scrollLeft = 0;
+    // Decrease offset over time (moves logos to the left).
+    offset -= (scrollSpeed * deltaTime) / 60;
+    carouselGroup.style.transform = `translateX(${offset}px)`;
+
+    // Check the first group to see if it's mostly offscreen.
+    const firstGroup = carouselGroup.querySelector(".carousel--container");
+    if (firstGroup) {
+      const firstRect = firstGroup.getBoundingClientRect();
+      const outerRect = carouselTop.getBoundingClientRect();
+      // When half of the first group's width is off to the left,
+      // remove it and append it to the end.
+      if (firstRect.right <= outerRect.left + firstRect.width / 2) {
+        const firstWidth = firstGroup.offsetWidth;
+        carouselGroup.appendChild(firstGroup);
+        // Adjust offset to account for the removed group's width.
+        offset += firstWidth;
+        carouselGroup.style.transform = `translateX(${offset}px)`;
+      }
     }
-    carousel.style.transform = `translateX(-${scrollLeft}px)`;
 
     requestAnimationFrame(animateCarousel);
   }

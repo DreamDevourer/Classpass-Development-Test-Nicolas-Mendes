@@ -242,23 +242,42 @@ header.sticky {
 /* =====================================
     Logos carousel
 ===================================== */
+.carousel--logos-engine {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .carousel--container {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 1rem 1.5rem;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 100%;
+}
+
+.carousel--logos-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
 }
 
 .carousel--item {
-  flex: 0 0 calc((100% - (1.5rem * 3)) / 4);
+  /* flex: 0 0 calc((100% - (1.5rem * 3)) / 4); */
   box-sizing: border-box;
 }
 
 .carousel--item img {
-  max-height: 4.81rem;
+  max-height: 2.75rem;
   width: 100%;
   display: block;
   object-fit: contain;
