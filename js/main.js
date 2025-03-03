@@ -69,8 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     containers.forEach((container, index) => {
       if (index > 0) {
         const prevContainer = containers[index - 1];
-        currentOffset =
-          prevContainer.myOffset + prevContainer.offsetWidth + gap;
+        currentOffset = prevContainer.myOffset;
       }
       container.myOffset = currentOffset;
       container.style.transform = `translateX(${container.myOffset}px)`;
