@@ -10,7 +10,8 @@ html {
 hr {
   border: 0;
   border-top: 1px solid var(--secondary-color-hover);
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
+  max-width: 50rem;
 }
 
 .container {
@@ -25,6 +26,14 @@ hr {
 
 .no-margin {
   margin: 0;
+}
+
+.btn--row-simple {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: auto;
+  justify-content: center;
 }
 
 .text--area-min p {
