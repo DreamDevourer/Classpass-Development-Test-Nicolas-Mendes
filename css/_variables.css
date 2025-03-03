@@ -39,6 +39,7 @@
   --scroll-padding-bottom: 4.5rem;
 }
 
+/* Existing @property definitions */
 @property --background-color {
   syntax: "<color>";
   inherits: false;
@@ -69,35 +70,10 @@
   inherits: false;
   initial-value: #000;
 }
-@property --soft-shadow {
-  syntax: "<filter>";
-  inherits: false;
-  initial-value: drop-shadow(0 8px 32px 0 rgba(0, 0, 0, 0.16));
-}
-@property --hard-shadow {
-  syntax: "<filter>";
-  inherits: false;
-  initial-value: drop-shadow(0px 163.333px 130.667px rgba(0, 0, 0, 0.07))
-    drop-shadow(0px 68.2368px 54.5894px rgba(0, 0, 0, 0.0503198))
-    drop-shadow(0px 36.4826px 29.1861px rgba(0, 0, 0, 0.0417275))
-    drop-shadow(0px 20.4519px 16.3615px rgba(0, 0, 0, 0.035))
-    drop-shadow(0px 10.8618px 8.68947px rgba(0, 0, 0, 0.0282725))
-    drop-shadow(0px 4.51985px 3.61588px rgba(0, 0, 0, 0.0196802));
-}
 @property --heading-font-family {
   syntax: "<string>";
   inherits: false;
   initial-value: "Circuit", Helvetica, sans-serif;
-}
-@property --heading-font-case-studies {
-  syntax: "<string>";
-  inherits: false;
-  initial-value: Canela, Spectral, Playfair Display, Lora, serif;
-}
-@property --quote-font-case-studies {
-  syntax: "<string>";
-  inherits: false;
-  initial-value: CanelaThin, Spectral, Playfair Display, Lora, serif;
 }
 @property --body-font-family {
   syntax: "<string>";
@@ -118,4 +94,95 @@
   syntax: "<length>";
   inherits: false;
   initial-value: 77.5rem;
+}
+
+@property --dark-background-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #000;
+}
+@property --light-background-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #f7f7f7;
+}
+@property --dark-blue-background-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #c0e0ff;
+}
+@property --primary-color-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #008aff;
+}
+@property --primary-color-outline-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #f2f6ff;
+}
+@property --secondary-color-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #e5e5e5;
+}
+@property --secondary-color-outline-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #f2f2f2;
+}
+@property --secondary-color-outline-dark-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #1a1a1a;
+}
+@property --tertiary-color-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #555555;
+}
+@property --tertiary-color-outline-hover {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #555555;
+}
+@property --disabled-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #cccccc;
+}
+@property --disabled-color-dark {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #9e9e9e;
+}
+@property --form-label-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #6a6a6a;
+}
+@property --form-checkbox-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #dedede;
+}
+@property --logos-carousel-items-per-page {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 6;
+}
+@property --scroll-behavior {
+  syntax: "<ident>";
+  inherits: false;
+  initial-value: smooth;
+}
+@property --scroll-padding-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 4.5rem;
+}
+@property --scroll-padding-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 4.5rem;
 }
