@@ -109,12 +109,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const slides = document.querySelectorAll(".spotlight--card");
   if (!slides.length) return;
 
+  // On mobile (<768px): show 1 slide; on desktop: show 3 slides.
   function getSlidesToShow() {
     return window.innerWidth < 768 ? 1 : 3;
   }
 
+  // Returns the card width.
+  // On mobile, use the total card width.
+  // On desktop, add a 16px gap.
+  function getCardWidth() {
+    return window.innerWidth < 768
+      ? slides[0].offsetWidth
+      : slides[0].offsetWidth + 16;
+  }
+
+  // On mobile start with +325px
+  // this is hard and pure magic lol
+  function getBaselineOffset() {
+    return window.innerWidth < 768 ? 325 : 0;
+  }
+
   let slidesToShow = getSlidesToShow();
-  let cardWidth = slides[0].offsetWidth + 16;
+  let cardWidth = getCardWidth();
+  let baselineOffset = getBaselineOffset();
+
+  // Total pages = total slides - slides visible + 1.
   let totalPages = slides.length - slidesToShow + 1;
   let maxPageIndex = totalPages - 1;
   let currentPage = 0;
@@ -139,9 +158,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (pageIndex < 0) pageIndex = 0;
     if (pageIndex > maxPageIndex) pageIndex = maxPageIndex;
     currentPage = pageIndex;
-    spotlightCarousel.style.transform = `translateX(-${
-      cardWidth * currentPage
-    }px)`;
+    let offset;
+    if (window.innerWidth < 768) {
+      // For mobile, start at +325 and subtract one card per page.
+      offset = baselineOffset - cardWidth * currentPage;
+      spotlightCarousel.style.transform = `translateX(${offset}px)`;
+    } else {
+      // For desktop, slide left with negative values.
+      offset = cardWidth * currentPage;
+      spotlightCarousel.style.transform = `translateX(-${offset}px)`;
+    }
     updateUI();
   }
 
@@ -164,7 +190,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("resize", () => {
     slidesToShow = getSlidesToShow();
-    cardWidth = slides[0].offsetWidth + 16;
+    cardWidth = getCardWidth();
+    baselineOffset = getBaselineOffset();
     totalPages = slides.length - slidesToShow + 1;
     maxPageIndex = totalPages - 1;
     createDots();
