@@ -49,15 +49,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Logos carousel
 document.addEventListener("DOMContentLoaded", function () {
-  const carouselTop = document.getElementById("carousel-logos");
-  const carouselGroup = document.querySelector(".carousel--logos-group");
+  const carouselTop = document.getElementById("carousel-logos"); // fixed outer container
+  const containerGroup = document.querySelector(".carousel--logos-group");
 
-  // Duplicate inner content initially so that there are three groups.
-  carouselGroup.innerHTML += carouselGroup.innerHTML + carouselGroup.innerHTML;
+  // Duplicate inner content so that there are three groups.
+  containerGroup.innerHTML +=
+    containerGroup.innerHTML + containerGroup.innerHTML;
 
-  let offset = 100; // starting translateX value (in px)
+  const gap = 24;
   const scrollSpeed = 2;
   let lastTimestamp = null;
+
+  function initializeOffsets() {
+    const containers = Array.from(
+      containerGroup.querySelectorAll(".carousel--container")
+    );
+    let currentOffset = 10;
+    containers.forEach((container, index) => {
+      if (index > 0) {
+        const prevContainer = containers[index - 1];
+        currentOffset = prevContainer.myOffset;
+      }
+      container.myOffset = currentOffset;
+      container.style.transform = `translateX(${container.myOffset}px)`;
+    });
+  }
+  initializeOffsets();
 
   function animateCarousel(timestamp) {
     if (!lastTimestamp) {
@@ -65,26 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const deltaTime = timestamp - lastTimestamp;
     lastTimestamp = timestamp;
+    const movement = (scrollSpeed * deltaTime) / 60; // pixels per frame
 
-    // Decrease offset over time (moves logos to the left).
-    offset -= (scrollSpeed * deltaTime) / 60;
-    carouselGroup.style.transform = `translateX(${offset}px)`;
+    // Get all containers.
+    const containers = Array.from(
+      containerGroup.querySelectorAll(".carousel--container")
+    );
 
-    // Check the first group to see if it's mostly offscreen.
-    const firstGroup = carouselGroup.querySelector(".carousel--container");
-    if (firstGroup) {
-      const firstRect = firstGroup.getBoundingClientRect();
-      const outerRect = carouselTop.getBoundingClientRect();
-      // When half of the first group's width is off to the left,
-      // remove it and append it to the end.
-      if (firstRect.right <= outerRect.left + firstRect.width / 2) {
-        const firstWidth = firstGroup.offsetWidth;
-        carouselGroup.appendChild(firstGroup);
-        // Adjust offset to account for the removed group's width.
-        offset += firstWidth;
-        carouselGroup.style.transform = `translateX(${offset}px)`;
+    // Update offsets.
+    containers.forEach((container) => {
+      container.myOffset -= movement;
+      container.style.transform = `translateX(${container.myOffset}px)`;
+    });
+
+    // Recycle any container that has fully moved off the left side.
+    containers.forEach((container) => {
+      if (container.myOffset + container.offsetWidth <= 0) {
+        // Determine the rightmost offset among the remaining containers.
+        const maxOffset = Math.max(...containers.map((c) => c.myOffset));
+        // Reposition this container so it appears just after the rightmost one.
+        container.myOffset = maxOffset;
+        container.style.transform = `translateX(${container.myOffset}px)`;
+        // Optionally, re-append the container to maintain DOM order.
+        containerGroup.appendChild(container);
       }
-    }
+    });
 
     requestAnimationFrame(animateCarousel);
   }

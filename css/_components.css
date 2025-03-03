@@ -251,23 +251,24 @@ header.sticky {
   box-sizing: border-box;
 }
 
+/* Ensure each group takes full width */
 .carousel--container {
+  flex: 0 0 100%;
   display: flex;
   align-items: center;
   gap: 1.5rem;
   overflow: hidden;
-  width: 100%;
   box-sizing: border-box;
-  flex: 0 0 100%;
 }
 
+/* Let the logos group expand naturally */
 .carousel--logos-group {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1.5rem;
   overflow: hidden;
-  width: 100%;
+  /* Remove fixed width so it fits all children */
   box-sizing: border-box;
 }
 
