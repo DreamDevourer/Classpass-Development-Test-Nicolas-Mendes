@@ -1,0 +1,28 @@
+/* === Full-bleed override for hero === */
+.hero--with-bleed {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.hero--with-bleed .lp--hero-specific-image {
+  width: auto;
+  padding-right: 700px;
+
+  background-image: url("../images/Hero_Desktop.jpg");
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+@media (max-width: 67.75rem) {
+  .hero--with-bleed .lp--hero-specific-image {
+    margin-right: 0;
+    padding-right: 0;
+    background-image: url("../images/Hero_mobile.jpg");
+    background-size: contain;
+    background-position: top;
+    height: 16.87rem;
+    width: 100%;
+  }
+}
