@@ -4,6 +4,12 @@ This project uses vanilla JavaScript, HTML, and CSS to create a landing page exp
 
 This project was created with high inspiration from a standard HubSpot CMS theme project and the Airbnb classes organization. Since this project uses vanilla web standards, it does not include any build libraries or frameworks.
 
+## Preview the project
+
+To preview the project to go to this link here: https://monumental-smakager-07938c.netlify.app/
+
+## General References
+
 Here are the design files and assets used as reference:
 
 - Figma file -> https://www.figma.com/design/AZQISVCxEeRHbfJbYtdj8H/CRO-%7C-Figma-Design-for-Coding-Test?node-id=4202-956&t=X8Hh4B2oJ6M0RPaD-1
