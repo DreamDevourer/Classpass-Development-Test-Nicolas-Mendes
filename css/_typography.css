@@ -1,0 +1,243 @@
+/* HEADING -> BOLD */
+@font-face {
+  font-family: "Circuit";
+  src: url("../fonts/heading/Circuit.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* BODY -> NORMAL */
+@font-face {
+  font-family: "TT Norms";
+  src: url("../fonts/body/TTNorms-Regular.woff2") format("woff2"),
+    url("../fonts/body/TTNorms-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TT Norms";
+  src: url("../fonts/body/TTNorms-Italic.woff2") format("woff2"),
+    url("../fonts/body/TTNorms-Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* BODY -> MEDIUM */
+@font-face {
+  font-family: "TT Norms";
+  src: url("../fonts/body/TTNorms-Medium.woff2") format("woff2"),
+    url("../fonts/body/TTNorms-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TT Norms";
+  src: url("../fonts/body/TTNorms-MediumItalic.woff2") format("woff2"),
+    url("../fonts/body/TTNorms-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* BODY -> BOLD */
+@font-face {
+  font-family: "TT Norms";
+  src: url("../fonts/body/TTNorms-Bold.woff2") format("woff2"),
+    url("../fonts/body/TTNorms-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TT Norms";
+  src: url("../fonts/body/TTNorms-BoldItalic.woff2") format("woff2"),
+    url("../fonts/body/TTNorms-BoldItalic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+body {
+  line-height: 1.5;
+}
+
+body,
+p {
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/* Paragraphs */
+
+p {
+  margin: 0 0 1rem;
+}
+
+.ks--column-title {
+  text-align: center;
+  font-weight: normal;
+}
+
+/* Anchors */
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+/* Headings */
+/* heading--xxxl is just for test purposes... */
+h1,
+.heading--1,
+.heading--xxxl {
+  font-size: 3.25rem;
+}
+
+h2,
+.heading--2 {
+  font-size: 2.25rem;
+}
+
+h3,
+.heading--3 {
+  font-size: 1.25rem;
+}
+/* from h4 to h6 I'm mostly guessing what size they are... */
+h4,
+.heading--4 {
+  font-size: 1.125rem;
+}
+
+h5,
+.heading--5 {
+  font-size: 1rem;
+}
+
+h6,
+.heading--6 {
+  font-size: 0.875rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  font-family: var(--heading-font-family);
+  font-weight: bold;
+}
+
+h1 b,
+h2 b,
+h3 b,
+h4 b,
+h5 b,
+h6 b {
+  font-weight: 800;
+}
+
+.heading--1,
+.heading--2,
+.heading--3,
+.heading--4,
+.heading--5,
+.heading--6 {
+  font-family: var(--heading-font-family);
+  line-height: 1;
+  font-weight: bold;
+}
+
+/* Lists */
+
+ul,
+ol {
+  margin: 0 0 1rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin: 0;
+}
+
+ul.no-list {
+  list-style: none;
+}
+
+/* Code blocks */
+
+code {
+  vertical-align: bottom;
+}
+
+/* Blockquotes */
+
+blockquote {
+  border-left: 2px solid;
+  margin: 0 0 1rem;
+  padding-left: 15px;
+}
+
+/* Horizontal rules */
+
+hr {
+  border: none;
+  height: 1px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Modifiers */
+
+.text--regular {
+  font-weight: normal;
+}
+
+.text--medium {
+  font-weight: medium;
+}
+
+.text--bold {
+  font-weight: bold;
+}
+
+@media (max-width: 67.75rem) {
+  h1,
+  .heading--1,
+  .heading--xxxl {
+    font-size: 2.25rem;
+  }
+
+  h2,
+  .heading--2 {
+    font-size: 1.75rem;
+  }
+
+  h3,
+  .heading--3 {
+    font-size: 1.25rem;
+  }
+  /* from h4 to h6 I'm mostly guessing what size they are... */
+  h4,
+  .heading--4 {
+    font-size: 1.125rem;
+  }
+
+  h5,
+  .heading--5 {
+    font-size: 1rem;
+  }
+
+  h6,
+  .heading--6 {
+    font-size: 0.875rem;
+  }
+}
