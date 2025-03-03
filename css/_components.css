@@ -830,4 +830,8 @@ header.sticky {
   .spotlight--carousel-wrapper {
     overflow: hidden;
   }
+
+  .carousel--container {
+    flex: 0 0 200%;
+  }
 }
