@@ -284,6 +284,10 @@ header.sticky {
   object-fit: contain;
 }
 
+.logoOutScreen {
+  opacity: 0;
+}
+
 /* =====================================
     Cards
 ===================================== */

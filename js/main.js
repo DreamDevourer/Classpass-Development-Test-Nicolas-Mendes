@@ -49,17 +49,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Logos carousel
 document.addEventListener("DOMContentLoaded", function () {
-  const carouselTop = document.getElementById("carousel-logos"); // fixed outer container
+  const carouselTop = document.getElementById("carousel-logos");
   const containerGroup = document.querySelector(".carousel--logos-group");
 
   // Duplicate inner content so that there are three groups.
   containerGroup.innerHTML +=
     containerGroup.innerHTML + containerGroup.innerHTML;
 
-  const gap = 24;
+  const gap = 8;
   const scrollSpeed = 2;
   let lastTimestamp = null;
 
+  // Initialize each container's offset.
   function initializeOffsets() {
     const containers = Array.from(
       containerGroup.querySelectorAll(".carousel--container")
@@ -68,7 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
     containers.forEach((container, index) => {
       if (index > 0) {
         const prevContainer = containers[index - 1];
-        currentOffset = prevContainer.myOffset;
+        currentOffset =
+          prevContainer.myOffset + prevContainer.offsetWidth + gap;
       }
       container.myOffset = currentOffset;
       container.style.transform = `translateX(${container.myOffset}px)`;
@@ -84,29 +86,39 @@ document.addEventListener("DOMContentLoaded", function () {
     lastTimestamp = timestamp;
     const movement = (scrollSpeed * deltaTime) / 60; // pixels per frame
 
-    // Get all containers.
+    // Get all current containers.
     const containers = Array.from(
       containerGroup.querySelectorAll(".carousel--container")
     );
 
-    // Update offsets.
+    // Update each container offset.
     containers.forEach((container) => {
       container.myOffset -= movement;
       container.style.transform = `translateX(${container.myOffset}px)`;
     });
 
-    // Recycle any container that has fully moved off the left side.
+    // Check for containers that have completely moved off the left side.
     containers.forEach((container) => {
       if (container.myOffset + container.offsetWidth <= 0) {
-        // Determine the rightmost offset among the remaining containers.
-        const maxOffset = Math.max(...containers.map((c) => c.myOffset));
-        // Reposition this container so it appears just after the rightmost one.
-        container.myOffset = maxOffset;
-        container.style.transform = `translateX(${container.myOffset}px)`;
-        // Optionally, re-append the container to maintain DOM order.
-        containerGroup.appendChild(container);
+        container.classList.add("logoOutScreen");
       }
     });
+
+    // Listen for all containers marked as offscreen.
+    const outContainers = Array.from(
+      containerGroup.querySelectorAll(".logoOutScreen")
+    );
+    if (outContainers.length > 0) {
+      // Determine the rightmost offset among all containers.
+      const maxOffset = Math.max(...containers.map((c) => c.myOffset));
+      outContainers.forEach((container) => {
+        // Reposition the container to the right of the current rightmost container.
+        container.myOffset = maxOffset + container.offsetWidth + gap;
+        container.style.transform = `translateX(${container.myOffset}px)`;
+        // Remove the marker class.
+        container.classList.remove("logoOutScreen");
+      });
+    }
 
     requestAnimationFrame(animateCarousel);
   }

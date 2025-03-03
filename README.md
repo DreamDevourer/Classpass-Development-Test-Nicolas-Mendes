@@ -1,5 +1,8 @@
 # Coding Test | Pickleball Tournament
 
+<img src="./images/First-party/Thumbnail.png" alt="Classpass project development test">
+<br><br>
+
 This project uses vanilla JavaScript, HTML, and CSS to create a landing page experience for a Pickleball Tournament. It includes the main landing page, a sign up page, and a thank you page.
 
 This project was created with high inspiration from a standard HubSpot CMS theme project and the Airbnb classes organization. Since this project uses vanilla web standards, it does not include any build libraries or frameworks.
