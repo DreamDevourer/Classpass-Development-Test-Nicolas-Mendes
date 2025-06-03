@@ -33,7 +33,7 @@ css/
   _buttons.css
   _forms.css
   _components.css
-  __kitechen-sink.css
+  __kitchen-sink.css
   overrides.css
   main.css
 
@@ -52,7 +52,7 @@ fonts/
 
 js/
   main.js
-  sing-up.js
+  sign-up.js
 
 templates/
   system/
